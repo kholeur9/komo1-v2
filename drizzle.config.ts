@@ -1,11 +1,7 @@
 import "dotenv/config";
 import { defineConfig } from 'drizzle-kit';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not defined');
-} else {
-  console.log('DATABASE_URL is defined');
-}
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL not found in environment');
 
 export default defineConfig({
   schema: './src/schema.ts',
@@ -14,6 +10,6 @@ export default defineConfig({
   dbCredentials: {
     url: process.env.DATABASE_URL!,
   },
-  strict: true,
   verbose: true,
+  strict: true,
 });
